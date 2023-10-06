@@ -1,10 +1,9 @@
-class CreateFollowMixin():
-    def perform_create(self, serializer):
-        serializer.save(
-            user=self.request.user,
-        )
+from rest_framework import mixins, viewsets
 
 
-class ListFollowMixin():
-    def get_queryset(self):
-        return self.request.user.follower.all()
+class CreateListViewSet(
+    mixins.CreateModelMixin,
+    mixins.ListModelMixin,
+    viewsets.GenericViewSet
+):
+    pass
